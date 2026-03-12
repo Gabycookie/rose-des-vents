@@ -2,9 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: #2C2C2C;
   background: #FDFCFA;
+}
+
+/* Selection color */
+::selection {
+  background-color: #2D4A3E;
+  color: #F5F0E8;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FDFCFA;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E8DDD0;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6B4C3B;
 }
 
 @layer utilities {

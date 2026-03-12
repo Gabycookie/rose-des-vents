@@ -1,4 +1,5 @@
 import Container from "@/components/ui/Container";
+import FadeIn from "@/components/ui/FadeIn";
 
 const features = [
   {
@@ -68,16 +69,18 @@ export default function BrandStory() {
     <section className="py-20 sm:py-28">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 text-center">
-          {features.map((feature) => (
-            <div key={feature.title} className="flex flex-col items-center">
-              <div className="text-forest mb-5">{feature.icon}</div>
-              <h3 className="font-serif text-xl tracking-wide mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-sm text-charcoal/60 leading-relaxed max-w-xs">
-                {feature.description}
-              </p>
-            </div>
+          {features.map((feature, i) => (
+            <FadeIn key={feature.title} delay={i * 150}>
+              <div className="flex flex-col items-center">
+                <div className="text-forest mb-5">{feature.icon}</div>
+                <h3 className="font-serif text-xl tracking-wide mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-sm text-charcoal/60 leading-relaxed max-w-xs">
+                  {feature.description}
+                </p>
+              </div>
+            </FadeIn>
           ))}
         </div>
       </Container>

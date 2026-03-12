@@ -9,7 +9,7 @@ export default function Hero() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1920&h=1080&fit=crop')",
+            "url('https://images.unsplash.com/photo-1706027302476-8b0c23299693?w=1920&h=1080&fit=crop')",
         }}
       >
         <div className="absolute inset-0 bg-charcoal/30" />
@@ -21,9 +21,9 @@ export default function Hero() {
           Fait main au Québec
         </p>
         <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] tracking-wide mb-6">
-          Fait main,
+          Tricoté avec amour,
           <br />
-          porté avec amour
+          porté avec fierté
         </h2>
         <p className="text-sm sm:text-base opacity-80 mb-10 max-w-md mx-auto leading-relaxed">
           Des tuques et foulards tricotés à la main en fibres naturelles,
@@ -33,7 +33,7 @@ export default function Hero() {
           <Button
             variant="outline"
             size="lg"
-            className="border-cream text-cream hover:bg-cream hover:text-forest"
+            className="!bg-cream !text-forest !border-cream hover:!bg-white"
           >
             Découvrir la collection
           </Button>

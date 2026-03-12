@@ -30,8 +30,8 @@ export const products: Product[] = [
       sizing: "Taille unique — s'adapte à la plupart des têtes adultes",
     },
     images: [
-      "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=800&h=1000&fit=crop",
-      "https://images.unsplash.com/photo-1510598969022-c4c6c5d05769?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1674433859621-979ae6e39c1a?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1737043832522-c63d6aab767a?w=800&h=1000&fit=crop",
     ],
     colors: [
       { name: "Sapin", hex: "#2D4A3E" },
@@ -54,8 +54,8 @@ export const products: Product[] = [
       sizing: "Taille unique",
     },
     images: [
-      "https://images.unsplash.com/photo-1529391409740-59f2cea08bc6?w=800&h=1000&fit=crop",
-      "https://images.unsplash.com/photo-1517423738875-5ce310acd3da?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1664289321749-07316ab5e374?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1772114675982-f1a85566598c?w=800&h=1000&fit=crop",
     ],
     colors: [
       { name: "Ivoire", hex: "#FFFFF0" },
@@ -77,8 +77,8 @@ export const products: Product[] = [
       sizing: "Taille unique — coupe ample",
     },
     images: [
-      "https://images.unsplash.com/photo-1515243061678-14fc18b93935?w=800&h=1000&fit=crop",
-      "https://images.unsplash.com/photo-1457545195570-67f207084966?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1763635838423-a77ae2dbeb48?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1737043814919-fa7249184768?w=800&h=1000&fit=crop",
     ],
     colors: [
       { name: "Rose poudré", hex: "#E8C4C4" },
@@ -100,8 +100,8 @@ export const products: Product[] = [
       sizing: "Taille unique",
     },
     images: [
-      "https://images.unsplash.com/photo-1541991542-4e2c2d68f3cc?w=800&h=1000&fit=crop",
-      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1633853706942-59f668add391?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1762542501396-1504f7370fb4?w=800&h=1000&fit=crop",
     ],
     colors: [
       { name: "Noir", hex: "#1A1A1A" },
@@ -124,8 +124,8 @@ export const products: Product[] = [
       sizing: "0-12 mois / 1-3 ans",
     },
     images: [
-      "https://images.unsplash.com/photo-1522771930-78848d9293e8?w=800&h=1000&fit=crop",
-      "https://images.unsplash.com/photo-1519689373023-dd07c7988603?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1699347611474-5be693bee31e?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1737053589279-9fb61d8781c3?w=800&h=1000&fit=crop",
     ],
     colors: [
       { name: "Crème", hex: "#F5F0E8" },
@@ -148,8 +148,8 @@ export const products: Product[] = [
       sizing: "Circonférence: 140 cm — Largeur: 30 cm",
     },
     images: [
-      "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=800&h=1000&fit=crop",
-      "https://images.unsplash.com/photo-1509281373149-e957c6296406?w=800&h=1000&fit=crop",
+      "https://plus.unsplash.com/premium_photo-1760118488677-0edd1f262a67?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1737043814915-2e23c00ba7cf?w=800&h=1000&fit=crop",
     ],
     colors: [
       { name: "Avoine", hex: "#D4C5A9" },
@@ -171,8 +171,8 @@ export const products: Product[] = [
       sizing: "200 cm × 60 cm",
     },
     images: [
-      "https://images.unsplash.com/photo-1601924994987-69e26d50dc64?w=800&h=1000&fit=crop",
-      "https://images.unsplash.com/photo-1543076659-9380cdf10613?w=800&h=1000&fit=crop",
+      "https://plus.unsplash.com/premium_photo-1695844419491-78388dc54543?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1770589145942-fd96a5eda7e3?w=800&h=1000&fit=crop",
     ],
     colors: [
       { name: "Brume", hex: "#C4B5A0" },
@@ -194,8 +194,8 @@ export const products: Product[] = [
       sizing: "180 cm × 25 cm",
     },
     images: [
-      "https://images.unsplash.com/photo-1457545195570-67f207084966?w=800&h=1000&fit=crop",
-      "https://images.unsplash.com/photo-1515243061678-14fc18b93935?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1601987775552-435bbcbfb465?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1737044970521-f68c94422ce2?w=800&h=1000&fit=crop",
     ],
     colors: [
       { name: "Terre", hex: "#6B4C3B" },
@@ -218,8 +218,8 @@ export const products: Product[] = [
       sizing: "190 cm × 35 cm",
     },
     images: [
-      "https://images.unsplash.com/photo-1510598969022-c4c6c5d05769?w=800&h=1000&fit=crop",
-      "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1698856287429-d43461bbe2db?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1634901849515-40ba019f9387?w=800&h=1000&fit=crop",
     ],
     colors: [
       { name: "Ivoire & Sapin", hex: "#2D4A3E" },
@@ -241,8 +241,8 @@ export const products: Product[] = [
       sizing: "100 cm × 20 cm",
     },
     images: [
-      "https://images.unsplash.com/photo-1519689373023-dd07c7988603?w=800&h=1000&fit=crop",
-      "https://images.unsplash.com/photo-1522771930-78848d9293e8?w=800&h=1000&fit=crop",
+      "https://plus.unsplash.com/premium_photo-1760480244772-9859ff454ba0?w=800&h=1000&fit=crop",
+      "https://plus.unsplash.com/premium_photo-1765040757859-78305061a0dc?w=800&h=1000&fit=crop",
     ],
     colors: [
       { name: "Crème", hex: "#F5F0E8" },
@@ -265,8 +265,8 @@ export const products: Product[] = [
       sizing: "Tuque taille unique + Foulard 180 cm × 25 cm",
     },
     images: [
-      "https://images.unsplash.com/photo-1543076659-9380cdf10613?w=800&h=1000&fit=crop",
-      "https://images.unsplash.com/photo-1601924994987-69e26d50dc64?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1731399738276-5d147430232b?w=800&h=1000&fit=crop",
+      "https://plus.unsplash.com/premium_photo-1760140029259-cb447904e2f5?w=800&h=1000&fit=crop",
     ],
     colors: [
       { name: "Sapin", hex: "#2D4A3E" },
@@ -288,8 +288,8 @@ export const products: Product[] = [
       sizing: "Tuque taille unique + Écharpe 200 cm × 60 cm",
     },
     images: [
-      "https://images.unsplash.com/photo-1509281373149-e957c6296406?w=800&h=1000&fit=crop",
-      "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=800&h=1000&fit=crop",
+      "https://plus.unsplash.com/premium_photo-1695844419280-99a6bc6c2c06?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1768149712752-bf2aa65439e8?w=800&h=1000&fit=crop",
     ],
     colors: [
       { name: "Brume", hex: "#C4B5A0" },
