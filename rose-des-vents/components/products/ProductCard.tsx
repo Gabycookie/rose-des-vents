@@ -5,12 +5,16 @@ import Link from "next/link";
 import { Product } from "@/data/products";
 import { formatPrice } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishlistContext";
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
+  const { toggleWishlist, isWishlisted } = useWishlist();
+  const wishlisted = isWishlisted(product.id);
 
   return (
     <div className="group">
+      <div className="relative">
       <Link
         href={`/products/${product.slug}`}
         className="block relative aspect-[3/4] overflow-hidden bg-wool mb-4"
@@ -32,6 +36,16 @@ export default function ProductCard({ product }: { product: Product }) {
           />
         )}
       </Link>
+      <button
+        onClick={() => toggleWishlist(product.id)}
+        className="absolute top-2 right-2 p-1.5 bg-snow/80 backdrop-blur-sm rounded-full text-charcoal hover:text-forest transition-colors z-10"
+        aria-label={wishlisted ? "Retirer des souhaits" : "Ajouter aux souhaits"}
+      >
+        <svg className="w-4 h-4" fill={wishlisted ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+      </button>
+      </div>
 
       <div className="flex items-start justify-between gap-2">
         <div>

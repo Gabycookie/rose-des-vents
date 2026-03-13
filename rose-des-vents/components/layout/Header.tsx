@@ -2,12 +2,15 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishlistContext";
 import MobileMenu from "./MobileMenu";
 import CartDrawer from "./CartDrawer";
 
 export default function Header() {
   const { totalItems, openCart } = useCart();
+  const { count: wishlistCount } = useWishlist();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -79,7 +82,24 @@ export default function Header() {
             </Link>
 
             {/* Right actions */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              {/* Wishlist */}
+              <Link
+                href="/wishlist"
+                className="relative p-2 text-charcoal hover:text-forest transition-colors"
+                aria-label="Liste de souhaits"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-forest text-cream text-[10px] rounded-full flex items-center justify-center">
+                    {wishlistCount}
+                  </span>
+                )}
+              </Link>
+
+              {/* Cart */}
               <button
                 onClick={openCart}
                 className="relative p-2 text-charcoal hover:text-forest transition-colors"
@@ -104,6 +124,22 @@ export default function Header() {
                   </span>
                 )}
               </button>
+
+              {/* User */}
+              <SignedOut>
+                <Link
+                  href="/sign-in"
+                  className="p-2 text-charcoal hover:text-forest transition-colors"
+                  aria-label="Se connecter"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </Link>
+              </SignedOut>
+              <SignedIn>
+                <UserButton afterSignOutUrl="/" />
+              </SignedIn>
             </div>
           </div>
         </div>

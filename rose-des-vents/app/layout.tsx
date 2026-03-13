@@ -3,7 +3,9 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { ClerkProvider } from "@clerk/nextjs";
 import { CartProvider } from "@/context/CartContext";
+import { WishlistProvider } from "@/context/WishlistContext";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -29,16 +31,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
-      <body
-        className={`${playfair.variable} ${inter.variable} font-sans antialiased bg-snow text-charcoal`}
-      >
-        <CartProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </CartProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="fr">
+        <body
+          className={`${playfair.variable} ${inter.variable} font-sans antialiased bg-snow text-charcoal`}
+        >
+          <WishlistProvider>
+            <CartProvider>
+              <Header />
+              <main>{children}</main>
+              <Footer />
+            </CartProvider>
+          </WishlistProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
