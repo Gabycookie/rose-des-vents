@@ -13,6 +13,7 @@ export interface Product {
   colors: { name: string; hex: string }[];
   collection: string;
   featured: boolean;
+  inStock?: boolean;
 }
 
 export const products: Product[] = [
@@ -86,6 +87,7 @@ export const products: Product[] = [
     ],
     collection: "tuques",
     featured: false,
+    inStock: false,
   },
   {
     id: "t4",
@@ -227,6 +229,7 @@ export const products: Product[] = [
     ],
     collection: "foulards",
     featured: false,
+    inStock: false,
   },
   {
     id: "s5",

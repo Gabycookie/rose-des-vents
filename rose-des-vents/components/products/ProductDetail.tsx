@@ -98,11 +98,12 @@ export default function ProductDetail({ product }: { product: Product }) {
 
         {/* Add to cart */}
         <Button
-          onClick={() => addItem(product, selectedColor)}
+          onClick={() => product.inStock !== false && addItem(product, selectedColor)}
           size="lg"
           className="w-full mb-4"
+          disabled={product.inStock === false}
         >
-          Ajouter au panier — {formatPrice(product.price)}
+          {product.inStock === false ? "Épuisé" : `Ajouter au panier — ${formatPrice(product.price)}`}
         </Button>
 
         <p className="text-[10px] text-charcoal/40 text-center mb-10">

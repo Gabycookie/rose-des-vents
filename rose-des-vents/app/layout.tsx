@@ -3,6 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { Analytics } from "@vercel/analytics/react";
 import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
 import { ClerkWrapper } from "@/components/ClerkWrapper";
@@ -43,6 +44,7 @@ export default function RootLayout({
               <Header />
               <main>{children}</main>
               <Footer />
+              <Analytics />
             </CartProvider>
           </WishlistProvider>
         </body>

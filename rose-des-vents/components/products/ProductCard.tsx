@@ -36,6 +36,11 @@ export default function ProductCard({ product }: { product: Product }) {
           />
         )}
       </Link>
+      {product.inStock === false && (
+        <div className="absolute inset-0 bg-snow/60 flex items-center justify-center pointer-events-none mb-4">
+          <span className="text-xs uppercase tracking-[0.2em] text-charcoal/60 bg-snow/90 px-3 py-1">Épuisé</span>
+        </div>
+      )}
       <button
         onClick={() => toggleWishlist(product.id)}
         className="absolute top-2 right-2 p-1.5 bg-snow/80 backdrop-blur-sm rounded-full text-charcoal hover:text-forest transition-colors z-10"
@@ -58,12 +63,14 @@ export default function ProductCard({ product }: { product: Product }) {
             {formatPrice(product.price)}
           </p>
         </div>
-        <button
-          onClick={() => addItem(product, product.colors[0].name)}
-          className="flex-shrink-0 text-xs uppercase tracking-wider text-forest border border-forest/30 px-3 py-1.5 hover:bg-forest hover:text-cream transition-all duration-300 opacity-0 group-hover:opacity-100"
-        >
-          Ajouter
-        </button>
+        {product.inStock !== false && (
+          <button
+            onClick={() => addItem(product, product.colors[0].name)}
+            className="flex-shrink-0 text-xs uppercase tracking-wider text-forest border border-forest/30 px-3 py-1.5 hover:bg-forest hover:text-cream transition-all duration-300 opacity-0 group-hover:opacity-100"
+          >
+            Ajouter
+          </button>
+        )}
       </div>
 
       {/* Color swatches */}
