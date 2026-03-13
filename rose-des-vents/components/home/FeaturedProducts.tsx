@@ -1,10 +1,16 @@
+"use client";
+
 import Container from "@/components/ui/Container";
 import ProductCard from "@/components/products/ProductCard";
 import FadeIn from "@/components/ui/FadeIn";
 import { getFeaturedProducts } from "@/data/products";
+import { useLang } from "@/context/LanguageContext";
+import { t } from "@/lib/translations";
 
 export default function FeaturedProducts() {
   const featured = getFeaturedProducts();
+  const { lang } = useLang();
+  const tr = t[lang];
 
   return (
     <section className="py-20 sm:py-28">
@@ -12,10 +18,10 @@ export default function FeaturedProducts() {
         <FadeIn>
           <div className="text-center mb-14">
             <p className="text-xs uppercase tracking-[0.3em] text-bark mb-3">
-              Sélection
+              {lang === "fr" ? "Sélection" : "Selection"}
             </p>
             <h2 className="font-serif text-3xl sm:text-4xl tracking-wide">
-              Nos Favoris
+              {tr.featuredTitle}
             </h2>
           </div>
         </FadeIn>

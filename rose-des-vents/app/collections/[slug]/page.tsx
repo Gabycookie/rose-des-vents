@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Container from "@/components/ui/Container";
 import ProductGrid from "@/components/products/ProductGrid";
+import CollectionHeader from "@/components/collections/CollectionHeader";
 import { collections, getCollectionBySlug } from "@/data/collections";
 import { getProductsByCollection } from "@/data/products";
 
@@ -30,20 +31,7 @@ export default function CollectionPage({
   return (
     <div className="pt-28 sm:pt-32 pb-20">
       <Container>
-        {/* Header */}
-        <div className="text-center mb-14">
-          <p className="text-xs uppercase tracking-[0.3em] text-bark mb-3">
-            Collection
-          </p>
-          <h1 className="font-serif text-4xl sm:text-5xl tracking-wide mb-4">
-            {collection.name}
-          </h1>
-          <p className="text-sm text-charcoal/60 max-w-lg mx-auto leading-relaxed">
-            {collection.description}
-          </p>
-        </div>
-
-        {/* Products */}
+        <CollectionHeader collection={collection} />
         <ProductGrid products={products} />
       </Container>
     </div>

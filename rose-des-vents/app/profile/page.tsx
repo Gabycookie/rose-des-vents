@@ -7,6 +7,8 @@ import Link from "next/link";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { useWishlist } from "@/context/WishlistContext";
+import { useLang } from "@/context/LanguageContext";
+import { t } from "@/lib/translations";
 
 interface Order {
   ref: string;
@@ -18,6 +20,8 @@ export default function ProfilePage() {
   const { signOut } = useClerk();
   const router = useRouter();
   const { count: wishlistCount } = useWishlist();
+  const { lang } = useLang();
+  const tr = t[lang];
   const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
@@ -39,7 +43,7 @@ export default function ProfilePage() {
     <div className="pt-28 sm:pt-32 pb-20">
       <Container className="max-w-3xl">
         <h1 className="font-serif text-3xl sm:text-4xl tracking-wide text-center mb-12">
-          Mon compte
+          {tr.myAccount}
         </h1>
 
         {/* User info */}
@@ -63,21 +67,21 @@ export default function ProfilePage() {
         {/* Wishlist */}
         <div className="border-b border-wool pb-8 mb-8">
           <div className="flex items-center justify-between">
-            <h2 className="font-serif text-xl tracking-wide">Liste de souhaits</h2>
+            <h2 className="font-serif text-xl tracking-wide">{tr.myWishlist}</h2>
             <Link
               href="/wishlist"
               className="text-xs uppercase tracking-[0.15em] text-forest hover:text-pine transition-colors"
             >
-              Voir ({wishlistCount})
+              {tr.viewWishlist} ({wishlistCount})
             </Link>
           </div>
         </div>
 
         {/* Orders */}
         <div className="mb-10">
-          <h2 className="font-serif text-xl tracking-wide mb-6">Historique des commandes</h2>
+          <h2 className="font-serif text-xl tracking-wide mb-6">{tr.orderHistory}</h2>
           {orders.length === 0 ? (
-            <p className="text-sm text-charcoal/50">Aucune commande pour l&apos;instant.</p>
+            <p className="text-sm text-charcoal/50">{tr.noOrders}</p>
           ) : (
             <div className="divide-y divide-wool">
               {orders.map((order) => (
@@ -94,7 +98,7 @@ export default function ProfilePage() {
           variant="outline"
           onClick={() => signOut(() => router.push("/"))}
         >
-          Se déconnecter
+          {tr.signOut}
         </Button>
       </Container>
     </div>

@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
 import { ClerkWrapper } from "@/components/ClerkWrapper";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -39,14 +40,16 @@ export default function RootLayout({
         <body
           className={`${playfair.variable} ${inter.variable} font-sans antialiased bg-snow text-charcoal`}
         >
-          <WishlistProvider>
-            <CartProvider>
-              <Header />
-              <main>{children}</main>
-              <Footer />
-              <Analytics />
-            </CartProvider>
-          </WishlistProvider>
+          <LanguageProvider>
+            <WishlistProvider>
+              <CartProvider>
+                <Header />
+                <main>{children}</main>
+                <Footer />
+                <Analytics />
+              </CartProvider>
+            </WishlistProvider>
+          </LanguageProvider>
         </body>
       </html>
     </ClerkWrapper>

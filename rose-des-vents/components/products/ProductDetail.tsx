@@ -6,18 +6,30 @@ import { Product } from "@/data/products";
 import { formatPrice, cn } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
 import Button from "@/components/ui/Button";
+import { useLang } from "@/context/LanguageContext";
+import { t } from "@/lib/translations";
 
 export default function ProductDetail({ product }: { product: Product }) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedColor, setSelectedColor] = useState(product.colors[0].name);
   const [openDetail, setOpenDetail] = useState<string | null>(null);
   const { addItem } = useCart();
+  const { lang } = useLang();
+  const tr = t[lang];
 
-  const details = [
-    { key: "materials", label: "Matériaux", content: product.details.materials },
-    { key: "care", label: "Entretien", content: product.details.care },
-    { key: "sizing", label: "Taille", content: product.details.sizing },
-  ];
+  const name = lang === "en" ? product.name_en : product.name;
+  const description = lang === "en" ? product.description_en : product.description;
+  const details = lang === "en"
+    ? [
+        { key: "materials", label: tr.detailMaterials, content: product.details_en.materials },
+        { key: "care", label: tr.detailCare, content: product.details_en.care },
+        { key: "sizing", label: tr.detailSizing, content: product.details_en.sizing },
+      ]
+    : [
+        { key: "materials", label: tr.detailMaterials, content: product.details.materials },
+        { key: "care", label: tr.detailCare, content: product.details.care },
+        { key: "sizing", label: tr.detailSizing, content: product.details.sizing },
+      ];
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
@@ -26,7 +38,7 @@ export default function ProductDetail({ product }: { product: Product }) {
         <div className="relative aspect-[3/4] bg-wool overflow-hidden mb-3">
           <Image
             src={product.images[selectedImage]}
-            alt={product.name}
+            alt={name}
             fill
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"
@@ -45,7 +57,7 @@ export default function ProductDetail({ product }: { product: Product }) {
             >
               <Image
                 src={img}
-                alt={`${product.name} ${i + 1}`}
+                alt={`${name} ${i + 1}`}
                 fill
                 className="object-cover"
                 sizes="80px"
@@ -61,18 +73,21 @@ export default function ProductDetail({ product }: { product: Product }) {
           Rose des Vents
         </p>
         <h1 className="font-serif text-3xl sm:text-4xl tracking-wide mb-3">
-          {product.name}
+          {name}
         </h1>
         <p className="text-lg mb-6">{formatPrice(product.price)}</p>
 
         <p className="text-sm text-charcoal/70 leading-relaxed mb-8">
-          {product.description}
+          {description}
         </p>
 
         {/* Color picker */}
         <div className="mb-8">
           <p className="text-xs uppercase tracking-[0.2em] mb-3">
-            Couleur — {selectedColor}
+            {tr.colorLabel} —{" "}
+            {lang === "en"
+              ? (product.colors.find((c) => c.name === selectedColor)?.name_en ?? selectedColor)
+              : selectedColor}
           </p>
           <div className="flex gap-2">
             {product.colors.map((color) => (
@@ -85,7 +100,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                     ? "border-forest scale-110"
                     : "border-transparent hover:border-charcoal/20"
                 )}
-                title={color.name}
+                title={lang === "en" ? color.name_en : color.name}
               >
                 <span
                   className="block w-full h-full rounded-full border border-charcoal/10"
@@ -103,11 +118,11 @@ export default function ProductDetail({ product }: { product: Product }) {
           className="w-full mb-4"
           disabled={product.inStock === false}
         >
-          {product.inStock === false ? "Épuisé" : `Ajouter au panier — ${formatPrice(product.price)}`}
+          {product.inStock === false ? tr.outOfStock : `${tr.addToCart} — ${formatPrice(product.price)}`}
         </Button>
 
         <p className="text-[10px] text-charcoal/40 text-center mb-10">
-          Livraison gratuite à partir de 100 $
+          {tr.freeShippingNote}
         </p>
 
         {/* Details accordion */}

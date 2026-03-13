@@ -7,16 +7,20 @@ import Button from "@/components/ui/Button";
 import { useCart } from "@/context/CartContext";
 import { formatPrice } from "@/lib/utils";
 import { useCheckout } from "@/lib/useCheckout";
+import { useLang } from "@/context/LanguageContext";
+import { t } from "@/lib/translations";
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, totalPrice } = useCart();
   const { startCheckout, isLoading, error } = useCheckout();
+  const { lang } = useLang();
+  const tr = t[lang];
 
   return (
     <div className="pt-28 sm:pt-32 pb-20">
       <Container className="max-w-4xl">
         <h1 className="font-serif text-3xl sm:text-4xl tracking-wide text-center mb-12">
-          Panier
+          {tr.cartTitle}
         </h1>
 
         {items.length === 0 ? (
@@ -34,9 +38,9 @@ export default function CartPage() {
                 d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
               />
             </svg>
-            <p className="text-charcoal/50 mb-6">Votre panier est vide</p>
+            <p className="text-charcoal/50 mb-6">{tr.cartEmpty}</p>
             <Link href="/collections/tuques">
-              <Button variant="outline">Continuer vos achats</Button>
+              <Button variant="outline">{tr.continueShopping}</Button>
             </Link>
           </div>
         ) : (
@@ -44,9 +48,9 @@ export default function CartPage() {
             {/* Items */}
             <div className="lg:col-span-2">
               <div className="border-b border-wool pb-2 mb-6 hidden sm:grid grid-cols-[1fr_100px_100px_40px] gap-4 text-xs uppercase tracking-[0.2em] text-charcoal/40">
-                <span>Produit</span>
-                <span className="text-center">Quantité</span>
-                <span className="text-right">Total</span>
+                <span>{tr.cartProduct}</span>
+                <span className="text-center">{tr.cartQty}</span>
+                <span className="text-right">{tr.cartTotal}</span>
                 <span />
               </div>
 
@@ -60,7 +64,7 @@ export default function CartPage() {
                       <div className="relative w-20 h-24 bg-wool flex-shrink-0">
                         <Image
                           src={item.product.images[0]}
-                          alt={item.product.name}
+                          alt={lang === "en" ? item.product.name_en : item.product.name}
                           fill
                           className="object-cover"
                           sizes="80px"
@@ -71,10 +75,12 @@ export default function CartPage() {
                           href={`/products/${item.product.slug}`}
                           className="text-sm hover:text-forest transition-colors"
                         >
-                          {item.product.name}
+                          {lang === "en" ? item.product.name_en : item.product.name}
                         </Link>
                         <p className="text-xs text-charcoal/50 mt-0.5">
-                          {item.color}
+                          {lang === "en"
+                            ? (item.product.colors.find((c) => c.name === item.color)?.name_en ?? item.color)
+                            : item.color}
                         </p>
                         <p className="text-sm mt-1">
                           {formatPrice(item.product.price)}
@@ -121,7 +127,7 @@ export default function CartPage() {
                         removeItem(item.product.id, item.color)
                       }
                       className="hidden sm:flex items-center justify-center text-charcoal/30 hover:text-charcoal transition-colors"
-                      aria-label="Retirer"
+                      aria-label={tr.remove}
                     >
                       <svg
                         className="w-4 h-4"
@@ -145,23 +151,23 @@ export default function CartPage() {
             {/* Summary */}
             <div className="bg-cream p-8">
               <h2 className="font-serif text-xl tracking-wide mb-6">
-                Résumé
+                {tr.orderSummary}
               </h2>
               <div className="space-y-3 text-sm mb-6">
                 <div className="flex justify-between">
-                  <span className="text-charcoal/60">Sous-total</span>
+                  <span className="text-charcoal/60">{tr.subtotal}</span>
                   <span>{formatPrice(totalPrice)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-charcoal/60">Livraison</span>
+                  <span className="text-charcoal/60">{tr.cartShipping}</span>
                   <span className="text-charcoal/60">
-                    {totalPrice >= 100 ? "Gratuite" : "Calculée à la caisse"}
+                    {totalPrice >= 100 ? tr.freeShipping : tr.calculatedAtCheckout}
                   </span>
                 </div>
               </div>
               <div className="border-t border-bark/10 pt-4 mb-6">
                 <div className="flex justify-between text-base">
-                  <span className="font-serif">Total</span>
+                  <span className="font-serif">{tr.total}</span>
                   <span className="font-serif">
                     {formatPrice(totalPrice)}
                   </span>
@@ -176,10 +182,10 @@ export default function CartPage() {
                 onClick={() => startCheckout(items)}
                 disabled={isLoading}
               >
-                {isLoading ? "Redirection…" : "Passer à la caisse"}
+                {isLoading ? tr.redirecting : tr.checkout}
               </Button>
               <p className="text-[10px] text-charcoal/40 text-center mt-3">
-                Taxes calculées à la caisse
+                {tr.taxNote}
               </p>
             </div>
           </div>

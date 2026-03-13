@@ -6,10 +6,14 @@ import { Product } from "@/data/products";
 import { formatPrice } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
+import { useLang } from "@/context/LanguageContext";
+import { t } from "@/lib/translations";
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
   const { toggleWishlist, isWishlisted } = useWishlist();
+  const { lang } = useLang();
+  const tr = t[lang];
   const wishlisted = isWishlisted(product.id);
 
   return (
@@ -51,7 +55,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <div>
           <Link href={`/products/${product.slug}`}>
             <h3 className="text-sm font-sans hover:text-forest transition-colors">
-              {product.name}
+              {lang === "en" ? product.name_en : product.name}
             </h3>
           </Link>
           <p className="text-sm text-charcoal/60 mt-0.5">
@@ -60,14 +64,14 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
         {product.inStock === false ? (
           <span className="flex-shrink-0 text-xs uppercase tracking-wider text-charcoal/40 border border-charcoal/20 px-3 py-1.5">
-            Épuisé
+            {tr.outOfStock}
           </span>
         ) : (
           <button
             onClick={() => addItem(product, product.colors[0].name)}
             className="flex-shrink-0 text-xs uppercase tracking-wider text-forest border border-forest/30 px-3 py-1.5 hover:bg-forest hover:text-cream transition-all duration-300 opacity-0 group-hover:opacity-100"
           >
-            Ajouter
+            {tr.addToCart}
           </button>
         )}
       </div>
@@ -77,7 +81,7 @@ export default function ProductCard({ product }: { product: Product }) {
         {product.colors.map((color) => (
           <span
             key={color.name}
-            title={color.name}
+            title={lang === "en" ? color.name_en : color.name}
             className="w-3 h-3 rounded-full border border-charcoal/10"
             style={{ backgroundColor: color.hex }}
           />

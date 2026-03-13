@@ -5,12 +5,16 @@ import { useState, useEffect } from "react";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
+import { useLang } from "@/context/LanguageContext";
+import { t } from "@/lib/translations";
 import MobileMenu from "./MobileMenu";
 import CartDrawer from "./CartDrawer";
 
 export default function Header() {
   const { totalItems, openCart } = useCart();
   const { count: wishlistCount } = useWishlist();
+  const { lang, toggle } = useLang();
+  const tr = t[lang];
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -58,19 +62,19 @@ export default function Header() {
                 href="/collections/tuques"
                 className="text-xs uppercase tracking-[0.2em] text-charcoal hover:text-forest transition-colors"
               >
-                Tuques
+                {tr.tuques}
               </Link>
               <Link
                 href="/collections/foulards"
                 className="text-xs uppercase tracking-[0.2em] text-charcoal hover:text-forest transition-colors"
               >
-                Foulards
+                {tr.scarves}
               </Link>
               <Link
                 href="/collections/ensembles"
                 className="text-xs uppercase tracking-[0.2em] text-charcoal hover:text-forest transition-colors"
               >
-                Ensembles
+                {tr.sets}
               </Link>
             </nav>
 
@@ -123,6 +127,14 @@ export default function Header() {
                     {totalItems}
                   </span>
                 )}
+              </button>
+
+              {/* Language toggle */}
+              <button
+                onClick={toggle}
+                className="text-xs uppercase tracking-[0.15em] text-charcoal/60 hover:text-forest transition-colors"
+              >
+                {lang === "fr" ? "EN" : "FR"}
               </button>
 
               {/* User */}

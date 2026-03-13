@@ -6,16 +6,20 @@ import Button from "@/components/ui/Button";
 import ProductGrid from "@/components/products/ProductGrid";
 import { useWishlist } from "@/context/WishlistContext";
 import { products } from "@/data/products";
+import { useLang } from "@/context/LanguageContext";
+import { t } from "@/lib/translations";
 
 export default function WishlistPage() {
   const { wishlistIds } = useWishlist();
+  const { lang } = useLang();
+  const tr = t[lang];
   const wishlisted = products.filter((p) => wishlistIds.includes(p.id));
 
   return (
     <div className="pt-28 sm:pt-32 pb-20">
       <Container>
         <h1 className="font-serif text-3xl sm:text-4xl tracking-wide text-center mb-12">
-          Ma liste de souhaits
+          {tr.myWishlist}
         </h1>
 
         {wishlisted.length === 0 ? (
@@ -33,9 +37,9 @@ export default function WishlistPage() {
                 d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
               />
             </svg>
-            <p className="text-charcoal/50 mb-6">Votre liste de souhaits est vide</p>
+            <p className="text-charcoal/50 mb-6">{tr.wishlistEmpty}</p>
             <Link href="/collections/tuques">
-              <Button variant="outline">Découvrir nos produits</Button>
+              <Button variant="outline">{tr.discoverProducts}</Button>
             </Link>
           </div>
         ) : (
