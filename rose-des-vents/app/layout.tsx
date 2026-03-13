@@ -3,9 +3,9 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { ClerkProvider } from "@clerk/nextjs";
 import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
+import { ClerkWrapper } from "@/components/ClerkWrapper";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -30,8 +30,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const clerkEnabled = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
   return (
-    <ClerkProvider>
+    <ClerkWrapper enabled={clerkEnabled}>
       <html lang="fr">
         <body
           className={`${playfair.variable} ${inter.variable} font-sans antialiased bg-snow text-charcoal`}
@@ -45,6 +47,6 @@ export default function RootLayout({
           </WishlistProvider>
         </body>
       </html>
-    </ClerkProvider>
+    </ClerkWrapper>
   );
 }
