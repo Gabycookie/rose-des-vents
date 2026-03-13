@@ -40,7 +40,7 @@ export default function SuccessPage({ searchParams }: SuccessPageProps) {
         </p>
         {sessionId && (
           <p className="text-charcoal/40 text-xs mb-8 font-mono">
-            Référence&nbsp;: {sessionId}
+            Référence&nbsp;: {sessionId.slice(-12).toUpperCase()}
           </p>
         )}
 
