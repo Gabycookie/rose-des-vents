@@ -57,13 +57,12 @@ export default function ProductCard({ product }: { product: Product }) {
           <p className="text-sm text-charcoal/60 mt-0.5">
             {formatPrice(product.price)}
           </p>
-          {product.inStock === false && (
-            <span className="inline-block mt-1.5 text-[10px] uppercase tracking-[0.15em] text-charcoal/40 border border-charcoal/20 px-2 py-0.5">
-              Épuisé
-            </span>
-          )}
         </div>
-        {product.inStock !== false && (
+        {product.inStock === false ? (
+          <span className="flex-shrink-0 text-xs uppercase tracking-wider text-charcoal/40 border border-charcoal/20 px-3 py-1.5">
+            Épuisé
+          </span>
+        ) : (
           <button
             onClick={() => addItem(product, product.colors[0].name)}
             className="flex-shrink-0 text-xs uppercase tracking-wider text-forest border border-forest/30 px-3 py-1.5 hover:bg-forest hover:text-cream transition-all duration-300 opacity-0 group-hover:opacity-100"
