@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useCart } from "@/context/CartContext";
 import { formatPrice } from "@/lib/utils";
 import Button from "@/components/ui/Button";
+import { useCheckout } from "@/lib/useCheckout";
 
 export default function CartDrawer() {
   const {
@@ -15,6 +16,7 @@ export default function CartDrawer() {
     updateQuantity,
     totalPrice,
   } = useCart();
+  const { startCheckout, isLoading, error } = useCheckout();
 
   useEffect(() => {
     if (isOpen) {
@@ -180,8 +182,16 @@ export default function CartDrawer() {
                 {formatPrice(totalPrice)}
               </span>
             </div>
-            <Button className="w-full" size="lg">
-              Passer à la caisse
+            {error && (
+              <p className="text-xs text-red-600 mb-2 text-center">{error}</p>
+            )}
+            <Button
+              className="w-full"
+              size="lg"
+              onClick={() => startCheckout(items)}
+              disabled={isLoading}
+            >
+              {isLoading ? "Redirection…" : "Passer à la caisse"}
             </Button>
             <p className="text-[10px] text-charcoal/40 text-center mt-3">
               Taxes et livraison calculées à la caisse

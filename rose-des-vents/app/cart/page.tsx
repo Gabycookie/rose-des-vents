@@ -6,9 +6,11 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { useCart } from "@/context/CartContext";
 import { formatPrice } from "@/lib/utils";
+import { useCheckout } from "@/lib/useCheckout";
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, totalPrice } = useCart();
+  const { startCheckout, isLoading, error } = useCheckout();
 
   return (
     <div className="pt-28 sm:pt-32 pb-20">
@@ -165,8 +167,16 @@ export default function CartPage() {
                   </span>
                 </div>
               </div>
-              <Button className="w-full" size="lg">
-                Passer à la caisse
+              {error && (
+                <p className="text-xs text-red-600 mb-2 text-center">{error}</p>
+              )}
+              <Button
+                className="w-full"
+                size="lg"
+                onClick={() => startCheckout(items)}
+                disabled={isLoading}
+              >
+                {isLoading ? "Redirection…" : "Passer à la caisse"}
               </Button>
               <p className="text-[10px] text-charcoal/40 text-center mt-3">
                 Taxes calculées à la caisse
