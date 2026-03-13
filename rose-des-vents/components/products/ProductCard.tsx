@@ -36,11 +36,6 @@ export default function ProductCard({ product }: { product: Product }) {
           />
         )}
       </Link>
-      {product.inStock === false && (
-        <div className="absolute inset-0 bg-snow/60 flex items-center justify-center pointer-events-none mb-4">
-          <span className="text-xs uppercase tracking-[0.2em] text-charcoal/60 bg-snow/90 px-3 py-1">Épuisé</span>
-        </div>
-      )}
       <button
         onClick={() => toggleWishlist(product.id)}
         className="absolute top-2 right-2 p-1.5 bg-snow/80 backdrop-blur-sm rounded-full text-charcoal hover:text-forest transition-colors z-10"
@@ -62,6 +57,11 @@ export default function ProductCard({ product }: { product: Product }) {
           <p className="text-sm text-charcoal/60 mt-0.5">
             {formatPrice(product.price)}
           </p>
+          {product.inStock === false && (
+            <span className="inline-block mt-1.5 text-[10px] uppercase tracking-[0.15em] text-charcoal/40 border border-charcoal/20 px-2 py-0.5">
+              Épuisé
+            </span>
+          )}
         </div>
         {product.inStock !== false && (
           <button
