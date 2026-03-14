@@ -76,7 +76,19 @@ export default function CartDrawer() {
                     <p className="text-sm mt-1">{formatPrice(item.product.price)}</p>
                     <div className="flex items-center gap-3 mt-2">
                       <button onClick={() => updateQuantity(item.product.id, item.color, item.quantity - 1)} className="w-7 h-7 border border-wool flex items-center justify-center text-xs hover:border-forest transition-colors">−</button>
-                      <span className="text-sm w-4 text-center">{item.quantity}</span>
+                      <input
+                        type="number"
+                        min="1"
+                        key={item.quantity}
+                        defaultValue={item.quantity}
+                        onBlur={(e) => {
+                          const val = parseInt(e.target.value);
+                          if (!isNaN(val) && val >= 1) updateQuantity(item.product.id, item.color, val);
+                          else e.target.value = String(item.quantity);
+                        }}
+                        onKeyDown={(e) => { if (e.key === "Enter") (e.target as HTMLInputElement).blur(); }}
+                        className="w-10 h-7 text-sm text-center border border-wool focus:border-forest focus:outline-none bg-transparent [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                      />
                       <button onClick={() => updateQuantity(item.product.id, item.color, item.quantity + 1)} className="w-7 h-7 border border-wool flex items-center justify-center text-xs hover:border-forest transition-colors">+</button>
                       <button onClick={() => removeItem(item.product.id, item.color)} className="ml-auto text-charcoal/40 hover:text-charcoal transition-colors">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -90,28 +90,26 @@ export default function CartPage() {
 
                     <div className="flex items-center justify-center gap-3 mt-4 sm:mt-0">
                       <button
-                        onClick={() =>
-                          updateQuantity(
-                            item.product.id,
-                            item.color,
-                            item.quantity - 1
-                          )
-                        }
+                        onClick={() => updateQuantity(item.product.id, item.color, item.quantity - 1)}
                         className="w-8 h-8 border border-wool flex items-center justify-center text-sm hover:border-forest transition-colors"
                       >
                         −
                       </button>
-                      <span className="text-sm w-6 text-center">
-                        {item.quantity}
-                      </span>
+                      <input
+                        type="number"
+                        min="1"
+                        key={item.quantity}
+                        defaultValue={item.quantity}
+                        onBlur={(e) => {
+                          const val = parseInt(e.target.value);
+                          if (!isNaN(val) && val >= 1) updateQuantity(item.product.id, item.color, val);
+                          else e.target.value = String(item.quantity);
+                        }}
+                        onKeyDown={(e) => { if (e.key === "Enter") (e.target as HTMLInputElement).blur(); }}
+                        className="w-12 h-8 text-sm text-center border border-wool focus:border-forest focus:outline-none bg-transparent [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                      />
                       <button
-                        onClick={() =>
-                          updateQuantity(
-                            item.product.id,
-                            item.color,
-                            item.quantity + 1
-                          )
-                        }
+                        onClick={() => updateQuantity(item.product.id, item.color, item.quantity + 1)}
                         className="w-8 h-8 border border-wool flex items-center justify-center text-sm hover:border-forest transition-colors"
                       >
                         +
