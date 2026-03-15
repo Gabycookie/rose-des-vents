@@ -103,6 +103,9 @@ export const t = {
     wishlistEmpty: "Votre liste de souhaits est vide",
     discoverProducts: "Découvrir nos produits",
 
+    // Related products
+    youMightAlsoLike: "Vous aimerez aussi",
+
     // Profile page
     myAccount: "Mon compte",
     orderHistory: "Historique des commandes",
@@ -211,6 +214,9 @@ export const t = {
     // Wishlist page
     wishlistEmpty: "Your wishlist is empty",
     discoverProducts: "Discover our products",
+
+    // Related products
+    youMightAlsoLike: "You might also like",
 
     // Profile page
     myAccount: "My account",

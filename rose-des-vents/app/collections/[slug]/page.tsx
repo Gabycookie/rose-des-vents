@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Container from "@/components/ui/Container";
 import ProductGrid from "@/components/products/ProductGrid";
 import CollectionHeader from "@/components/collections/CollectionHeader";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { collections, getCollectionBySlug } from "@/data/collections";
 import { getProductsByCollection } from "@/data/products";
 
@@ -28,9 +29,15 @@ export default function CollectionPage({
 
   const products = getProductsByCollection(params.slug);
 
+  const crumbs = [
+    { labelFr: "Accueil", labelEn: "Home", href: "/" },
+    { labelFr: collection.name, labelEn: collection.name_en },
+  ];
+
   return (
     <div className="pt-28 sm:pt-32 pb-20">
       <Container>
+        <Breadcrumbs crumbs={crumbs} />
         <CollectionHeader collection={collection} />
         <ProductGrid products={products} />
       </Container>
