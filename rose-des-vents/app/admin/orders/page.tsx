@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { createServiceClient } from "@/lib/supabase";
 import Container from "@/components/ui/Container";
 import { formatPrice } from "@/lib/utils";
@@ -20,7 +20,7 @@ type Order = {
 };
 
 export default async function AdminOrdersPage() {
-  const { userId } = auth();
+  const { userId } = await auth();
 
   if (!userId || (ADMIN_USER_IDS.length > 0 && !ADMIN_USER_IDS.includes(userId))) {
     redirect("/sign-in");

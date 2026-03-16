@@ -1,14 +1,16 @@
-import { authMiddleware } from "@clerk/nextjs";
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-// Skip Clerk middleware if keys are not configured
-const handler = process.env.CLERK_SECRET_KEY
-  ? authMiddleware({ publicRoutes: ["/((?!profile).*)"] })
-  : (_req: NextRequest) => NextResponse.next();
+const isProtectedRoute = createRouteMatcher(["/profile(.*)", "/admin(.*)"]);
 
-export default handler;
+export default clerkMiddleware(async (auth, req) => {
+  if (isProtectedRoute(req)) {
+    await auth.protect();
+  }
+});
 
 export const config = {
-  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: [
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    "/(api|trpc)(.*)",
+  ],
 };
