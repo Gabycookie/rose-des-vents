@@ -21,10 +21,32 @@ const inter = Inter({
   display: "swap",
 });
 
+const OG_IMAGE =
+  "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=1200&h=630&fit=crop";
+
 export const metadata: Metadata = {
-  title: "Rose des Vents — Tuques & Foulards Artisanaux",
+  title: {
+    default: "Rose des Vents — Tuques & Foulards Artisanaux",
+    template: "%s — Rose des Vents",
+  },
   description:
     "Tuques et foulards tricotés à la main en fibres naturelles. Fait avec amour au Québec.",
+  openGraph: {
+    type: "website",
+    locale: "fr_CA",
+    siteName: "Rose des Vents",
+    title: "Rose des Vents — Tuques & Foulards Artisanaux",
+    description:
+      "Tuques et foulards tricotés à la main en fibres naturelles. Fait avec amour au Québec.",
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: "Rose des Vents" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rose des Vents — Tuques & Foulards Artisanaux",
+    description:
+      "Tuques et foulards tricotés à la main en fibres naturelles. Fait avec amour au Québec.",
+    images: [OG_IMAGE],
+  },
 };
 
 export default function RootLayout({

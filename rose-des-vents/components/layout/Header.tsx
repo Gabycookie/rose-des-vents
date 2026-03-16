@@ -9,6 +9,7 @@ import { useLang } from "@/context/LanguageContext";
 import { t } from "@/lib/translations";
 import MobileMenu from "./MobileMenu";
 import CartDrawer from "./CartDrawer";
+import SearchOverlay from "./SearchOverlay";
 
 export default function Header() {
   const { totalItems, openCart } = useCart();
@@ -17,6 +18,7 @@ export default function Header() {
   const tr = t[lang];
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -87,6 +89,17 @@ export default function Header() {
 
             {/* Right actions */}
             <div className="flex items-center gap-3">
+              {/* Search */}
+              <button
+                onClick={() => setSearchOpen(true)}
+                className="p-2 text-charcoal hover:text-forest transition-colors"
+                aria-label={lang === "fr" ? "Rechercher" : "Search"}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+
               {/* Wishlist */}
               <Link
                 href="/wishlist"
@@ -162,6 +175,7 @@ export default function Header() {
         onClose={() => setMobileMenuOpen(false)}
       />
       <CartDrawer />
+      <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }

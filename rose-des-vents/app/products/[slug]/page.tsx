@@ -13,9 +13,21 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const product = getProductBySlug(params.slug);
   if (!product) return {};
+  const ogImage = product.images[0].split("?")[0] + "?w=1200&h=630&fit=crop";
   return {
-    title: `${product.name} — Rose des Vents`,
+    title: product.name,
     description: product.description,
+    openGraph: {
+      title: product.name,
+      description: product.description,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: product.name }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: product.name,
+      description: product.description,
+      images: [ogImage],
+    },
   };
 }
 
