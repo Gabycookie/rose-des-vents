@@ -8,6 +8,7 @@ import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
 import { ClerkWrapper } from "@/components/ClerkWrapper";
 import { LanguageProvider } from "@/context/LanguageContext";
+import CookieBanner from "@/components/layout/CookieBanner";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -68,6 +69,7 @@ export default function RootLayout({
                 <Header />
                 <main>{children}</main>
                 <Footer />
+                <CookieBanner />
                 <Analytics />
               </CartProvider>
             </WishlistProvider>

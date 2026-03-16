@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Container from "@/components/ui/Container";
-import ProductGrid from "@/components/products/ProductGrid";
+import FilterableProductGrid from "@/components/products/FilterableProductGrid";
 import CollectionHeader from "@/components/collections/CollectionHeader";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { collections, getCollectionBySlug } from "@/data/collections";
@@ -51,7 +51,7 @@ export default function CollectionPage({
       <Container>
         <Breadcrumbs crumbs={crumbs} />
         <CollectionHeader collection={collection} />
-        <ProductGrid products={products} />
+        <FilterableProductGrid products={products} />
       </Container>
     </div>
   );

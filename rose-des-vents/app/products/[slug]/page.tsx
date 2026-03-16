@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Container from "@/components/ui/Container";
 import ProductDetail from "@/components/products/ProductDetail";
 import RelatedProducts from "@/components/products/RelatedProducts";
+import RecentlyViewed from "@/components/products/RecentlyViewed";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { products, getProductBySlug } from "@/data/products";
 import { getCollectionBySlug } from "@/data/collections";
@@ -55,6 +56,7 @@ export default function ProductPage({
         <Breadcrumbs crumbs={crumbs} />
         <ProductDetail product={product} />
         <RelatedProducts product={product} />
+        <RecentlyViewed currentId={product.id} />
       </Container>
     </div>
   );

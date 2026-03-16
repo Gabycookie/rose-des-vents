@@ -106,6 +106,23 @@ export const t = {
     // Related products
     youMightAlsoLike: "Vous aimerez aussi",
 
+    // Recently viewed
+    recentlyViewed: "Vu récemment",
+
+    // Sort & filter
+    sortBy: "Trier",
+    priceLowHigh: "Prix croissant",
+    priceHighLow: "Prix décroissant",
+    nameAZ: "Nom A–Z",
+    allColors: "Toutes les couleurs",
+    filterResults: "résultat(s)",
+
+    // Cookie banner
+    cookieTitle: "Confidentialité",
+    cookieText: "Nous utilisons des cookies pour analyser notre trafic et améliorer votre expérience. Vos données ne sont jamais vendues.",
+    cookieAccept: "Accepter",
+    cookieDecline: "Refuser",
+
     // Profile page
     myAccount: "Mon compte",
     orderHistory: "Historique des commandes",
@@ -217,6 +234,23 @@ export const t = {
 
     // Related products
     youMightAlsoLike: "You might also like",
+
+    // Recently viewed
+    recentlyViewed: "Recently viewed",
+
+    // Sort & filter
+    sortBy: "Sort",
+    priceLowHigh: "Price: low to high",
+    priceHighLow: "Price: high to low",
+    nameAZ: "Name A–Z",
+    allColors: "All colours",
+    filterResults: "result(s)",
+
+    // Cookie banner
+    cookieTitle: "Privacy",
+    cookieText: "We use cookies to analyse traffic and improve your experience. Your data is never sold.",
+    cookieAccept: "Accept",
+    cookieDecline: "Decline",
 
     // Profile page
     myAccount: "My account",
