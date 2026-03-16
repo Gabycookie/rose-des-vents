@@ -88,8 +88,8 @@ export default function Header() {
             </Link>
 
             {/* Right actions */}
-            <div className="flex items-center gap-3">
-              {/* Search */}
+            <div className="flex items-center gap-1 sm:gap-3">
+              {/* Search — visible on all sizes */}
               <button
                 onClick={() => setSearchOpen(true)}
                 className="p-2 text-charcoal hover:text-forest transition-colors"
@@ -100,10 +100,10 @@ export default function Header() {
                 </svg>
               </button>
 
-              {/* Wishlist */}
+              {/* Wishlist — hidden on mobile (in mobile menu) */}
               <Link
                 href="/wishlist"
-                className="relative p-2 text-charcoal hover:text-forest transition-colors"
+                className="relative p-2 text-charcoal hover:text-forest transition-colors hidden sm:flex"
                 aria-label="Liste de souhaits"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -116,24 +116,14 @@ export default function Header() {
                 )}
               </Link>
 
-              {/* Cart */}
+              {/* Cart — visible on all sizes */}
               <button
                 onClick={openCart}
                 className="relative p-2 text-charcoal hover:text-forest transition-colors"
                 aria-label="Panier"
               >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                  />
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
                 {totalItems > 0 && (
                   <span className="absolute -top-1 -right-1 w-5 h-5 bg-forest text-cream text-[10px] rounded-full flex items-center justify-center">
@@ -142,19 +132,19 @@ export default function Header() {
                 )}
               </button>
 
-              {/* Language toggle */}
+              {/* Language toggle — hidden on mobile (in mobile menu) */}
               <button
                 onClick={toggle}
-                className="text-xs uppercase tracking-[0.15em] text-charcoal/60 hover:text-forest transition-colors"
+                className="hidden sm:block text-xs uppercase tracking-[0.15em] text-charcoal/60 hover:text-forest transition-colors px-1"
               >
                 {lang === "fr" ? "EN" : "FR"}
               </button>
 
-              {/* User */}
+              {/* User — hidden on mobile (in mobile menu) */}
               <Show when="signed-out">
                 <Link
                   href="/sign-in"
-                  className="p-2 text-charcoal hover:text-forest transition-colors"
+                  className="hidden sm:flex p-2 text-charcoal hover:text-forest transition-colors"
                   aria-label="Se connecter"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -163,7 +153,9 @@ export default function Header() {
                 </Link>
               </Show>
               <Show when="signed-in">
-                <UserButton />
+                <div className="hidden sm:block">
+                  <UserButton />
+                </div>
               </Show>
             </div>
           </div>

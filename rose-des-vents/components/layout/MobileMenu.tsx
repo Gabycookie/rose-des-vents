@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import { Show, UserButton } from "@clerk/nextjs";
 import { useLang } from "@/context/LanguageContext";
 import { t } from "@/lib/translations";
+import { useWishlist } from "@/context/WishlistContext";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -11,7 +13,8 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
-  const { lang } = useLang();
+  const { lang, toggle } = useLang();
+  const { count: wishlistCount } = useWishlist();
   const tr = t[lang];
 
   useEffect(() => {
@@ -58,6 +61,41 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           <Link href="/" onClick={onClose} className="text-sm uppercase tracking-[0.2em] text-charcoal/60 hover:text-forest transition-colors">
             {tr.home}
           </Link>
+          <Link href="/wishlist" onClick={onClose} className="flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-charcoal/60 hover:text-forest transition-colors">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+            {tr.wishlist ?? "Wishlist"}
+            {wishlistCount > 0 && (
+              <span className="ml-1 w-5 h-5 bg-forest text-cream text-[10px] rounded-full flex items-center justify-center">
+                {wishlistCount}
+              </span>
+            )}
+          </Link>
+          <hr className="border-wool" />
+          {/* Language + Account */}
+          <button
+            onClick={() => { toggle(); onClose(); }}
+            className="text-left text-sm uppercase tracking-[0.2em] text-charcoal/60 hover:text-forest transition-colors"
+          >
+            {lang === "fr" ? "English" : "Français"}
+          </button>
+          <Show when="signed-out">
+            <Link href="/sign-in" onClick={onClose} className="flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-charcoal/60 hover:text-forest transition-colors">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              {tr.signIn ?? "Sign in"}
+            </Link>
+          </Show>
+          <Show when="signed-in">
+            <div className="flex items-center gap-3">
+              <UserButton />
+              <Link href="/profile" onClick={onClose} className="text-sm uppercase tracking-[0.2em] text-charcoal/60 hover:text-forest transition-colors">
+                {tr.myAccount ?? "My Account"}
+              </Link>
+            </div>
+          </Show>
         </nav>
       </div>
     </>
