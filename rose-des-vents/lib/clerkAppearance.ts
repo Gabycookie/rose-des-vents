@@ -9,7 +9,7 @@ export const clerkAppearance: Appearance = {
     colorTextSecondary: "#6B6B6B",
     colorInputBackground: "#FFFFFF",
     colorInputText: "#2C2C2C",
-    borderRadius: "0px",
+    borderRadius: "6px",
     fontFamily: "inherit",
     fontSize: "14px",
   },
@@ -18,22 +18,22 @@ export const clerkAppearance: Appearance = {
     headerTitle: "font-serif tracking-wide text-[#2C2C2C]",
     headerSubtitle: "text-[#6B6B6B] text-sm",
     socialButtonsBlockButton:
-      "border border-[#E8E4DC] bg-white text-[#2C2C2C] hover:bg-[#F5F0E8] transition-colors rounded-none text-xs uppercase tracking-widest",
+      "border border-[#E8E4DC] bg-white text-[#2C2C2C] hover:bg-[#F5F0E8] transition-colors rounded-md text-xs uppercase tracking-widest",
     socialButtonsBlockButtonText: "font-normal text-xs",
     dividerLine: "bg-[#E8E4DC]",
     dividerText: "text-[#6B6B6B] text-xs",
     formFieldLabel: "text-xs uppercase tracking-[0.15em] text-[#2C2C2C]",
     formFieldInput:
-      "border border-[#E8E4DC] bg-white text-[#2C2C2C] rounded-none focus:border-[#2D4A3E] focus:ring-0 text-sm",
+      "border border-[#E8E4DC] bg-white text-[#2C2C2C] rounded-md focus:border-[#2D4A3E] focus:ring-0 text-sm",
     formButtonPrimary:
-      "bg-[#2D4A3E] hover:bg-[#1e3329] text-[#FAFAF8] rounded-none text-xs uppercase tracking-[0.2em] font-normal shadow-none",
+      "bg-[#2D4A3E] hover:bg-[#1e3329] text-[#FAFAF8] rounded-md text-xs uppercase tracking-[0.2em] font-normal shadow-none",
     footerActionLink:
       "text-[#2D4A3E] hover:text-[#1e3329] underline-offset-2 font-normal",
     identityPreviewText: "text-sm text-[#2C2C2C]",
     identityPreviewEditButton: "text-[#2D4A3E] text-xs",
     formResendCodeLink: "text-[#2D4A3E]",
-    otpCodeFieldInput: "border border-[#E8E4DC] rounded-none",
+    otpCodeFieldInput: "border border-[#E8E4DC] rounded-md",
     alertText: "text-sm",
-    badge: "rounded-none",
+    badge: "rounded-md",
   },
 };

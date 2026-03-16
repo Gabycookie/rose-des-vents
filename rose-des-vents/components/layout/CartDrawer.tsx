@@ -63,7 +63,7 @@ export default function CartDrawer() {
             <div className="flex flex-col gap-6">
               {items.map((item) => (
                 <div key={`${item.product.id}-${item.color}`} className="flex gap-4">
-                  <div className="relative w-20 h-24 bg-wool flex-shrink-0">
+                  <div className="relative w-20 h-24 bg-wool flex-shrink-0 rounded-md overflow-hidden">
                     <Image src={item.product.images[0]} alt={lang === "en" ? item.product.name_en : item.product.name} fill className="object-cover" sizes="80px" />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -75,7 +75,7 @@ export default function CartDrawer() {
                     </p>
                     <p className="text-sm mt-1">{formatPrice(item.product.price)}</p>
                     <div className="flex items-center gap-3 mt-2">
-                      <button onClick={() => updateQuantity(item.product.id, item.color, item.quantity - 1)} className="w-7 h-7 border border-wool flex items-center justify-center text-xs hover:border-forest transition-colors">−</button>
+                      <button onClick={() => updateQuantity(item.product.id, item.color, item.quantity - 1)} className="w-7 h-7 border border-wool rounded-md flex items-center justify-center text-xs hover:border-forest transition-colors">−</button>
                       <input
                         type="number"
                         min="1"
@@ -87,9 +87,9 @@ export default function CartDrawer() {
                           else e.target.value = String(item.quantity);
                         }}
                         onKeyDown={(e) => { if (e.key === "Enter") (e.target as HTMLInputElement).blur(); }}
-                        className="w-10 h-7 text-sm text-center border border-wool focus:border-forest focus:outline-none bg-transparent [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                        className="w-10 h-7 text-sm text-center border border-wool rounded-md focus:border-forest focus:outline-none bg-transparent [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                       />
-                      <button onClick={() => updateQuantity(item.product.id, item.color, item.quantity + 1)} className="w-7 h-7 border border-wool flex items-center justify-center text-xs hover:border-forest transition-colors">+</button>
+                      <button onClick={() => updateQuantity(item.product.id, item.color, item.quantity + 1)} className="w-7 h-7 border border-wool rounded-md flex items-center justify-center text-xs hover:border-forest transition-colors">+</button>
                       <button onClick={() => removeItem(item.product.id, item.color)} className="ml-auto text-charcoal/40 hover:text-charcoal transition-colors">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />

@@ -69,7 +69,7 @@ export default function FilterableProductGrid({
           </span>
           <button
             onClick={() => setActiveColor(null)}
-            className={`text-xs uppercase tracking-[0.1em] px-3 py-1 border transition-colors ${
+            className={`text-xs uppercase tracking-[0.1em] px-3 py-1 border rounded-md transition-colors ${
               activeColor === null
                 ? "border-forest text-forest"
                 : "border-wool text-charcoal/40 hover:border-charcoal/40"
@@ -102,7 +102,7 @@ export default function FilterableProductGrid({
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value as SortKey)}
-            className="text-xs uppercase tracking-[0.1em] border border-wool bg-transparent text-charcoal px-3 py-1.5 focus:border-forest focus:outline-none cursor-pointer"
+            className="text-xs uppercase tracking-[0.1em] border border-wool rounded-md bg-transparent text-charcoal px-3 py-1.5 focus:border-forest focus:outline-none cursor-pointer"
           >
             <option value="default">—</option>
             <option value="price-asc">{tr.priceLowHigh}</option>

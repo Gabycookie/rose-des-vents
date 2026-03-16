@@ -21,7 +21,7 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className="relative">
       <Link
         href={`/products/${product.slug}`}
-        className="block relative aspect-[3/4] overflow-hidden bg-wool mb-4"
+        className="block relative aspect-[3/4] overflow-hidden bg-wool mb-4 rounded-lg"
       >
         <Image
           src={product.images[0]}
@@ -63,13 +63,13 @@ export default function ProductCard({ product }: { product: Product }) {
           </p>
         </div>
         {product.inStock === false ? (
-          <span className="flex-shrink-0 text-xs uppercase tracking-wider text-charcoal/40 border border-charcoal/20 px-3 py-1.5">
+          <span className="flex-shrink-0 text-xs uppercase tracking-wider text-charcoal/40 border border-charcoal/20 px-3 py-1.5 rounded-md">
             {tr.outOfStock}
           </span>
         ) : (
           <button
             onClick={() => addItem(product, product.colors[0].name)}
-            className="flex-shrink-0 text-xs uppercase tracking-wider text-forest border border-forest/30 px-3 py-1.5 hover:bg-forest hover:text-cream transition-all duration-300 opacity-0 group-hover:opacity-100"
+            className="flex-shrink-0 text-xs uppercase tracking-wider text-forest border border-forest/30 px-3 py-1.5 hover:bg-forest hover:text-cream transition-all duration-300 opacity-0 group-hover:opacity-100 rounded-md"
           >
             {tr.addToCart}
           </button>

@@ -49,13 +49,13 @@ export default function CookieBanner() {
             <div className="flex items-center gap-3 flex-shrink-0">
               <button
                 onClick={handleDecline}
-                className="text-xs uppercase tracking-[0.15em] text-snow/50 hover:text-snow transition-colors px-4 py-2 border border-snow/20 hover:border-snow/50"
+                className="text-xs uppercase tracking-[0.15em] text-snow/50 hover:text-snow transition-colors px-4 py-2 border border-snow/20 hover:border-snow/50 rounded-md"
               >
                 {tr.cookieDecline}
               </button>
               <button
                 onClick={handleAccept}
-                className="text-xs uppercase tracking-[0.15em] bg-forest hover:bg-pine text-snow px-5 py-2 transition-colors"
+                className="text-xs uppercase tracking-[0.15em] bg-forest hover:bg-pine text-snow px-5 py-2 transition-colors rounded-md"
               >
                 {tr.cookieAccept}
               </button>

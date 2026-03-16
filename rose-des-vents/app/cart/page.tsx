@@ -61,7 +61,7 @@ export default function CartPage() {
                     className="py-6 sm:grid sm:grid-cols-[1fr_100px_100px_40px] sm:gap-4 sm:items-center"
                   >
                     <div className="flex gap-4">
-                      <div className="relative w-20 h-24 bg-wool flex-shrink-0">
+                      <div className="relative w-20 h-24 bg-wool flex-shrink-0 rounded-md overflow-hidden">
                         <Image
                           src={item.product.images[0]}
                           alt={lang === "en" ? item.product.name_en : item.product.name}
@@ -91,7 +91,7 @@ export default function CartPage() {
                     <div className="flex items-center justify-center gap-3 mt-4 sm:mt-0">
                       <button
                         onClick={() => updateQuantity(item.product.id, item.color, item.quantity - 1)}
-                        className="w-8 h-8 border border-wool flex items-center justify-center text-sm hover:border-forest transition-colors"
+                        className="w-8 h-8 border border-wool rounded-md flex items-center justify-center text-sm hover:border-forest transition-colors"
                       >
                         −
                       </button>
@@ -106,11 +106,11 @@ export default function CartPage() {
                           else e.target.value = String(item.quantity);
                         }}
                         onKeyDown={(e) => { if (e.key === "Enter") (e.target as HTMLInputElement).blur(); }}
-                        className="w-12 h-8 text-sm text-center border border-wool focus:border-forest focus:outline-none bg-transparent [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                        className="w-12 h-8 text-sm text-center border border-wool rounded-md focus:border-forest focus:outline-none bg-transparent [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                       />
                       <button
                         onClick={() => updateQuantity(item.product.id, item.color, item.quantity + 1)}
-                        className="w-8 h-8 border border-wool flex items-center justify-center text-sm hover:border-forest transition-colors"
+                        className="w-8 h-8 border border-wool rounded-md flex items-center justify-center text-sm hover:border-forest transition-colors"
                       >
                         +
                       </button>
@@ -147,7 +147,7 @@ export default function CartPage() {
             </div>
 
             {/* Summary */}
-            <div className="bg-cream p-8">
+            <div className="bg-cream p-8 rounded-lg">
               <h2 className="font-serif text-xl tracking-wide mb-6">
                 {tr.orderSummary}
               </h2>

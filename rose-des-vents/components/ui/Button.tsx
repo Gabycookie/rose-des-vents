@@ -16,7 +16,7 @@ export default function Button({
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center font-sans tracking-wide uppercase transition-all duration-300",
+        "inline-flex items-center justify-center font-sans tracking-wide uppercase transition-all duration-300 rounded-md",
         variant === "primary" &&
           "bg-forest text-cream hover:bg-pine",
         variant === "secondary" &&
