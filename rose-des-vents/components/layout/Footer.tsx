@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import { useLang } from "@/context/LanguageContext";
@@ -8,6 +9,8 @@ import { t } from "@/lib/translations";
 export default function Footer() {
   const { lang } = useLang();
   const tr = t[lang];
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
 
   return (
     <footer className="bg-forest text-cream">
@@ -44,16 +47,47 @@ export default function Footer() {
           <div>
             <h4 className="text-xs uppercase tracking-[0.2em] mb-4">{tr.footerNewsletter}</h4>
             <p className="text-sm text-cream/70 mb-4">{tr.footerNewsletterSub}</p>
-            <form className="flex" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder={tr.footerEmailPlaceholder}
-                className="flex-1 bg-transparent border border-cream/30 px-3 py-2 text-sm placeholder:text-cream/40 focus:outline-none focus:border-cream/60"
-              />
-              <button type="submit" className="bg-cream text-forest px-4 py-2 text-xs uppercase tracking-wider hover:bg-wool transition-colors">
-                OK
-              </button>
-            </form>
+            {status === "ok" ? (
+              <p className="text-sm text-cream/80">{lang === "fr" ? "Merci ! Vous êtes inscrit·e." : "Thanks! You're subscribed."}</p>
+            ) : (
+              <form
+                className="flex"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  if (!email) return;
+                  setStatus("loading");
+                  try {
+                    const res = await fetch("/api/newsletter", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ email }),
+                    });
+                    setStatus(res.ok ? "ok" : "error");
+                  } catch {
+                    setStatus("error");
+                  }
+                }}
+              >
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={tr.footerEmailPlaceholder}
+                  className="flex-1 bg-transparent border border-cream/30 px-3 py-2 text-sm placeholder:text-cream/40 focus:outline-none focus:border-cream/60 rounded-l-md"
+                />
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="bg-cream text-forest px-4 py-2 text-xs uppercase tracking-wider hover:bg-wool transition-colors rounded-r-md disabled:opacity-50"
+                >
+                  {status === "loading" ? "…" : "OK"}
+                </button>
+              </form>
+            )}
+            {status === "error" && (
+              <p className="text-xs text-red-300 mt-1">{lang === "fr" ? "Erreur, réessayez." : "Error, please try again."}</p>
+            )}
           </div>
         </div>
 

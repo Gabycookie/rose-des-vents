@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { Resend } from "resend";
+import { createServiceClient } from "@/lib/supabase";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2026-02-25.clover",
@@ -29,11 +30,29 @@ export async function POST(req: Request) {
     const customerEmail = session.customer_details?.email;
     const customerName = session.customer_details?.name ?? "Cliente";
 
-    if (customerEmail) {
-      const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
-        limit: 100,
-      });
+    const lineItems = await stripe.checkout.sessions.listLineItems(session.id, { limit: 100 });
 
+    // Save order to Supabase
+    try {
+      const db = createServiceClient();
+      await db.from("orders").upsert({
+        stripe_session_id: session.id,
+        customer_email: customerEmail ?? "unknown",
+        customer_name: customerName,
+        amount_total: session.amount_total ?? 0,
+        currency: session.currency ?? "cad",
+        items: lineItems.data.map((item) => ({
+          description: item.description,
+          quantity: item.quantity,
+          amount_total: item.amount_total,
+        })),
+        status: "paid",
+      }, { onConflict: "stripe_session_id" });
+    } catch (err) {
+      console.error("Supabase order save failed:", err);
+    }
+
+    if (customerEmail) {
       await resend.emails.send({
         from: "Rose des Vents <onboarding@resend.dev>",
         to: [customerEmail],
