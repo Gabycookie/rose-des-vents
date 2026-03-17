@@ -40,7 +40,7 @@ export default function Header() {
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="lg:hidden p-2 text-charcoal"
+              className="md:hidden p-2 text-charcoal"
               aria-label="Ouvrir le menu"
             >
               <svg
@@ -59,7 +59,7 @@ export default function Header() {
             </button>
 
             {/* Desktop nav left */}
-            <nav className="hidden lg:flex items-center gap-8">
+            <nav className="hidden md:flex items-center gap-8">
               <Link
                 href="/collections/tuques"
                 className="text-xs uppercase tracking-[0.2em] text-charcoal hover:text-forest transition-colors"
@@ -103,7 +103,7 @@ export default function Header() {
               {/* Wishlist — hidden on mobile (in mobile menu) */}
               <Link
                 href="/wishlist"
-                className="relative p-2 text-charcoal hover:text-forest transition-colors hidden sm:flex"
+                className="relative p-2 text-charcoal hover:text-forest transition-colors hidden md:flex"
                 aria-label="Liste de souhaits"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -135,7 +135,7 @@ export default function Header() {
               {/* Language toggle — hidden on mobile (in mobile menu) */}
               <button
                 onClick={toggle}
-                className="hidden sm:block text-xs uppercase tracking-[0.15em] text-charcoal/60 hover:text-forest transition-colors px-1"
+                className="hidden md:block text-xs uppercase tracking-[0.15em] text-charcoal/60 hover:text-forest transition-colors px-1"
               >
                 {lang === "fr" ? "EN" : "FR"}
               </button>
@@ -144,7 +144,7 @@ export default function Header() {
               <Show when="signed-out">
                 <Link
                   href="/sign-in"
-                  className="hidden sm:flex p-2 text-charcoal hover:text-forest transition-colors"
+                  className="hidden md:flex p-2 text-charcoal hover:text-forest transition-colors"
                   aria-label="Se connecter"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -153,7 +153,7 @@ export default function Header() {
                 </Link>
               </Show>
               <Show when="signed-in">
-                <div className="hidden sm:block">
+                <div className="hidden md:block">
                   <UserButton />
                 </div>
               </Show>
