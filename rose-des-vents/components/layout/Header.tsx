@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Show, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import { useLang } from "@/context/LanguageContext";
@@ -141,7 +141,7 @@ export default function Header() {
               </button>
 
               {/* User — hidden on mobile (in mobile menu) */}
-              <Show when="signed-out">
+              <SignedOut>
                 <Link
                   href="/sign-in"
                   className="hidden md:flex p-2 text-charcoal hover:text-forest transition-colors"
@@ -151,12 +151,12 @@ export default function Header() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
                 </Link>
-              </Show>
-              <Show when="signed-in">
+              </SignedOut>
+              <SignedIn>
                 <div className="hidden md:block">
                   <UserButton />
                 </div>
-              </Show>
+              </SignedIn>
             </div>
           </div>
         </div>
